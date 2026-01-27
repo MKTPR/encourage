@@ -28,8 +28,6 @@
 
 ## Checklist
 
-- [ ] I ran `npm run lint`
-- [ ] I ran `npm run build`
 - [ ] I tested the happy path locally
 - [ ] No secrets/keys were committed
 - [ ] If this changes behavior, I updated README or docs (if needed)
