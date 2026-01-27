@@ -1,0 +1,35 @@
+name: CI
+
+on:
+pull_request:
+branches: [ "main" ]
+push:
+branches: [ "main" ]
+
+jobs:
+lint-and-build:
+runs-on: ubuntu-latest
+timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      # If you add tests later, uncomment:
+      # - name: Test
+      #   run: npm test --if-present
+
+      - name: Build
+        run: npm run build
