@@ -1,6 +1,8 @@
 import { JournalEntry } from "./types";
+import { Reflection } from "./reflectionSchema";
 
 const LS_KEY = "encourage_entries_v1";
+const REFLECTIONS_KEY = "encourage_reflections_v1";
 
 // Cache for stable references (required by useSyncExternalStore)
 let cachedRaw: string | null = null;
@@ -47,4 +49,25 @@ export function addEntry(content: string): JournalEntry {
   const next = [entry, ...getEntries()];
   window.localStorage.setItem(LS_KEY, JSON.stringify(next));
   return entry;
+}
+
+// --- Reflection persistence ---
+
+function getReflectionsMap(): Record<string, Reflection> {
+  if (typeof window === "undefined") return {};
+  const raw = window.localStorage.getItem(REFLECTIONS_KEY);
+  return safeParse<Record<string, Reflection>>(raw, {});
+}
+
+export function getReflection(entryId: string): Reflection | undefined {
+  return getReflectionsMap()[entryId];
+}
+
+export function saveReflection(entryId: string, reflection: Reflection): void {
+  if (typeof window === "undefined") {
+    throw new Error("saveReflection must be called in the browser");
+  }
+  const map = getReflectionsMap();
+  map[entryId] = reflection;
+  window.localStorage.setItem(REFLECTIONS_KEY, JSON.stringify(map));
 }
