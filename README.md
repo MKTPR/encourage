@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Encourage
+
+A personal journaling web app that helps you reflect on your day and build healthier thought patterns through structured reflection.
+
+## Features
+
+### Current (MVP)
+- Create journal entries
+- View list of past entries (newest first)
+- View entry details
+- Generate AI-assisted reflections (mocked for now)
+- Reflections persist locally after refresh
+
+### Coming Soon
+- Real LLM integration (OpenAI)
+- Basic safety guardrails and crisis resources
+- Eval harness for reflection quality
+
+## Tech Stack
+
+- **Framework**: Next.js 14+ (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Validation**: Zod
+- **Storage**: localStorage (MVP), Postgres/Supabase planned
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js 18+
+- npm, yarn, or pnpm
+
+### Installation
+
+```bash
+# Clone the repo
+git clone <repo-url>
+cd encourage
+
+# Install dependencies
+npm install
+```
+
+### Environment Setup
+
+```bash
+# Copy the example env file
+cp .env.example .env.local
+```
+
+The app runs with defaults (mock AI provider). No API keys required for local development.
+
+### Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Manual Test Checklist
 
-To learn more about Next.js, take a look at the following resources:
+Use this checklist to verify the app works correctly:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [ ] **Create entry**: Navigate to `/new`, write content, submit
+- [ ] **List shows newest-first**: Home page displays entries with most recent at top
+- [ ] **Entry detail**: Click an entry to view full content on `/entry/[id]`
+- [ ] **Generate reflection**: Click "Generate Reflection" button on entry detail page
+- [ ] **Reflection displays**: All 4 fields shown (emotion, core thought, reframe, one action)
+- [ ] **Refresh persists entry**: Reload page, entry still appears in list
+- [ ] **Refresh persists reflection**: Reload entry detail page, reflection still visible
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```
+src/
+├── app/                 # Next.js App Router pages
+│   ├── api/reflect/     # Reflection API endpoint
+│   ├── entry/[id]/      # Entry detail page
+│   ├── new/             # New entry page
+│   └── page.tsx         # Home (entry list)
+├── components/          # Reusable UI components
+└── lib/                 # Core logic
+    ├── env.ts           # Environment config
+    ├── hooks.ts         # React hooks
+    ├── llm.ts           # LLM provider (mock/real)
+    ├── reflectionSchema.ts  # Zod schema for reflections
+    ├── store.ts         # localStorage persistence
+    └── types.ts         # TypeScript types
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Private project.
