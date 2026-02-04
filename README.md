@@ -96,6 +96,21 @@ src/
     └── types.ts         # TypeScript types
 ```
 
+## Deployment
+
+**Live URL:** [https://encourage-ochre.vercel.app](https://encourage-ochre.vercel.app)
+
+### Notes
+- **Local storage:** Your journal entries are stored in your browser's localStorage. They are not synced across devices or browsers.
+- **Mock AI:** The reflection feature currently uses a mock AI provider. Real LLM integration is planned for a future release.
+- **Privacy:** No data is sent to external servers. Everything stays in your browser.
+
+### Environment Variables (Vercel)
+```
+NEXT_PUBLIC_APP_NAME=Encourage
+AI_PROVIDER=mock
+```
+
 ## License
 
 Private project.
