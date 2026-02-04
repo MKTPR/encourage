@@ -10,8 +10,8 @@ export function Card({ children, variant = "solid", className = "" }: CardProps)
   const baseStyles = "rounded-lg p-6";
 
   const variantStyles = {
-    solid: "border border-zinc-200 bg-white",
-    dashed: "border border-dashed border-zinc-300",
+    solid: "border border-border bg-card",
+    dashed: "border border-dashed border-border",
   };
 
   return (

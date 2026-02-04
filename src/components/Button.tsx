@@ -26,12 +26,12 @@ export function Button({
   className = "",
   ...props
 }: ButtonProps) {
-  const baseStyles = "rounded-full px-5 py-2 text-sm transition-colors inline-block text-center";
+  const baseStyles = "rounded-full px-5 py-2 text-sm font-medium transition-colors inline-block text-center";
   const disabledStyles = "disabled:opacity-50 disabled:cursor-not-allowed";
 
   const variantStyles = {
-    primary: "bg-zinc-900 text-white hover:bg-zinc-800",
-    secondary: "border border-zinc-300 hover:bg-zinc-50",
+    primary: "bg-primary text-white hover:bg-primary-hover",
+    secondary: "border border-border text-text-secondary hover:bg-muted hover:border-border-hover",
   };
 
   if ("href" in props && props.href) {

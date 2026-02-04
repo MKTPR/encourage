@@ -24,9 +24,9 @@ export default function HomePage() {
             <li key={entry.id}>
               <Link
                 href={`/entry/${entry.id}`}
-                className="block rounded-lg border border-zinc-200 p-4 hover:border-zinc-300 hover:bg-zinc-50"
+                className="block rounded-lg border border-border p-4 hover:border-border-hover hover:bg-muted transition-colors"
               >
-                <time className="text-sm text-zinc-500">
+                <time className="text-sm text-text-muted">
                   {new Date(entry.createdAt).toLocaleDateString(undefined, {
                     weekday: "short",
                     year: "numeric",
@@ -34,7 +34,7 @@ export default function HomePage() {
                     day: "numeric",
                   })}
                 </time>
-                <p className="mt-2 line-clamp-2 text-zinc-700">
+                <p className="mt-2 line-clamp-2 text-text-secondary">
                   {entry.content}
                 </p>
               </Link>

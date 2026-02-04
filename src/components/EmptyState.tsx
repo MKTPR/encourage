@@ -9,9 +9,9 @@ interface EmptyStateProps {
 export function EmptyState({ title, description, action }: EmptyStateProps) {
   return (
     <div className="mt-12 text-center">
-      <p className="text-zinc-500">{title}</p>
+      <p className="text-text-secondary">{title}</p>
       {description && (
-        <p className="mt-2 text-sm text-zinc-400">{description}</p>
+        <p className="mt-2 text-sm text-text-muted">{description}</p>
       )}
       {action && <div className="mt-4">{action}</div>}
     </div>

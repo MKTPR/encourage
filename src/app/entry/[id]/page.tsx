@@ -70,7 +70,7 @@ export default function EntryDetailPage() {
   return (
     <PageShell backLink={{ href: "/", label: "Back to Home" }}>
       <article className="mt-6">
-        <time className="text-sm text-zinc-500">
+        <time className="text-sm text-text-muted">
           {new Date(entry.createdAt).toLocaleDateString(undefined, {
             weekday: "long",
             year: "numeric",
@@ -81,11 +81,11 @@ export default function EntryDetailPage() {
           })}
         </time>
 
-        <div className="mt-4 whitespace-pre-wrap text-zinc-700 leading-relaxed">{entry.content}</div>
+        <div className="mt-4 whitespace-pre-wrap text-text-secondary leading-relaxed">{entry.content}</div>
       </article>
 
       <section className="mt-10">
-        <h2 className="text-sm font-medium text-zinc-500 mb-4">Reflection</h2>
+        <h2 className="text-sm font-medium text-text-muted mb-4">Reflection</h2>
 
         {error && (
           <div className="mb-4">
@@ -95,7 +95,7 @@ export default function EntryDetailPage() {
                 <button
                   onClick={handleGenerateReflection}
                   disabled={isLoading}
-                  className="text-sm text-red-600 hover:text-red-800 underline"
+                  className="text-sm text-error hover:underline"
                 >
                   Try again
                 </button>
@@ -105,7 +105,7 @@ export default function EntryDetailPage() {
         )}
 
         {isLoading && (
-          <Card className="bg-zinc-50">
+          <Card className="bg-muted">
             <Spinner message="Generating reflection..." />
           </Card>
         )}
@@ -113,26 +113,26 @@ export default function EntryDetailPage() {
         {reflection && !isLoading && (
           <Card className="space-y-4">
             <div>
-              <h3 className="text-xs font-medium text-zinc-400 uppercase tracking-wide">Emotion</h3>
-              <p className="mt-1 text-zinc-700">{reflection.emotion}</p>
+              <h3 className="text-xs font-medium text-text-muted uppercase tracking-wide">Emotion</h3>
+              <p className="mt-1 text-text-secondary">{reflection.emotion}</p>
             </div>
             <div>
-              <h3 className="text-xs font-medium text-zinc-400 uppercase tracking-wide">Core Thought</h3>
-              <p className="mt-1 text-zinc-700">{reflection.core_thought}</p>
+              <h3 className="text-xs font-medium text-text-muted uppercase tracking-wide">Core Thought</h3>
+              <p className="mt-1 text-text-secondary">{reflection.core_thought}</p>
             </div>
             <div>
-              <h3 className="text-xs font-medium text-zinc-400 uppercase tracking-wide">Reframe</h3>
-              <p className="mt-1 text-zinc-700">{reflection.reframe}</p>
+              <h3 className="text-xs font-medium text-text-muted uppercase tracking-wide">Reframe</h3>
+              <p className="mt-1 text-text-secondary">{reflection.reframe}</p>
             </div>
             <div>
-              <h3 className="text-xs font-medium text-zinc-400 uppercase tracking-wide">One Action</h3>
-              <p className="mt-1 text-zinc-700">{reflection.one_action}</p>
+              <h3 className="text-xs font-medium text-text-muted uppercase tracking-wide">One Action</h3>
+              <p className="mt-1 text-text-secondary">{reflection.one_action}</p>
             </div>
 
             <button
               onClick={handleGenerateReflection}
               disabled={isLoading}
-              className="mt-4 text-sm text-zinc-500 hover:text-zinc-700 underline"
+              className="mt-4 text-sm text-text-muted hover:text-text-secondary underline transition-colors"
             >
               Regenerate
             </button>
@@ -141,7 +141,7 @@ export default function EntryDetailPage() {
 
         {!reflection && !isLoading && !error && (
           <Card variant="dashed">
-            <p className="text-sm text-zinc-400 mb-4">Get an AI-assisted reflection on your journal entry.</p>
+            <p className="text-sm text-text-muted mb-4">Get an AI-assisted reflection on your journal entry.</p>
             <Button onClick={handleGenerateReflection} disabled={isLoading}>
               Generate Reflection
             </Button>
