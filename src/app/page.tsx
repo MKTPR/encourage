@@ -2,29 +2,22 @@
 
 import Link from "next/link";
 import { useEntries } from "@/lib/hooks";
+import { PageShell, Button, EmptyState } from "@/components";
 
 export default function HomePage() {
   const entries = useEntries();
 
   return (
-    <main className="mx-auto max-w-2xl px-4 py-10">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Encourage</h1>
-        <Link
-          href="/new"
-          className="rounded-full bg-zinc-900 px-5 py-2 text-sm text-white hover:bg-zinc-800"
-        >
-          New Entry
-        </Link>
-      </div>
-
+    <PageShell
+      title="Encourage"
+      headerAction={<Button href="/new">New Entry</Button>}
+    >
       {entries.length === 0 ? (
-        <div className="mt-12 text-center">
-          <p className="text-zinc-500">No entries yet.</p>
-          <p className="mt-2 text-sm text-zinc-400">
-            Start journaling to see your entries here.
-          </p>
-        </div>
+        <EmptyState
+          title="No entries yet."
+          description="Start journaling to see your entries here."
+          action={<Button href="/new">New Entry</Button>}
+        />
       ) : (
         <ul className="mt-8 space-y-4">
           {entries.map((entry) => (
@@ -49,6 +42,6 @@ export default function HomePage() {
           ))}
         </ul>
       )}
-    </main>
+    </PageShell>
   );
 }
