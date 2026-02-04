@@ -19,7 +19,7 @@ export function PageShell({
       {backLink && (
         <Link
           href={backLink.href}
-          className="text-sm text-zinc-500 hover:text-zinc-700"
+          className="text-sm text-text-secondary hover:text-text-primary transition-colors"
         >
           &larr; {backLink.label}
         </Link>
@@ -27,7 +27,7 @@ export function PageShell({
 
       {(title || headerAction) && (
         <div className={`flex items-center justify-between ${backLink ? "mt-6" : ""}`}>
-          {title && <h1 className="text-2xl font-semibold">{title}</h1>}
+          {title && <h1 className="text-2xl font-semibold text-text-primary">{title}</h1>}
           {headerAction}
         </div>
       )}
