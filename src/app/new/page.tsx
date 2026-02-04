@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { addEntry } from "@/lib/store";
+import { PageShell, Button, TextArea } from "@/components";
 
 const MIN_CONTENT_LENGTH = 5;
 
@@ -34,40 +35,29 @@ export default function NewEntryPage() {
   };
 
   return (
-    <main className="mx-auto max-w-2xl px-4 py-10">
-      <h1 className="text-2xl font-semibold">New entry</h1>
-
+    <PageShell title="New entry">
       <form onSubmit={onSubmit} className="mt-6">
-        <textarea
+        <TextArea
+          id="content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
           rows={10}
           placeholder="What's on your mind today?"
           disabled={isSubmitting}
-          aria-invalid={error ? "true" : undefined}
-          aria-describedby={error ? "content-error" : undefined}
-          className="w-full rounded-lg border border-zinc-300 p-3 disabled:opacity-50"
+          error={error ?? undefined}
         />
 
-        {error && (
-          <p id="content-error" className="mt-2 text-sm text-red-600">
-            {error}
-          </p>
-        )}
-
         <div className="mt-4 flex gap-3">
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="rounded-full bg-zinc-900 px-5 py-2 text-sm text-white disabled:opacity-50"
-          >
+          <Button type="submit" disabled={isSubmitting}>
             {isSubmitting ? "Saving..." : "Save"}
-          </button>
-          <Link href="/" className="rounded-full border border-zinc-300 px-5 py-2 text-sm">
-            Cancel
+          </Button>
+          <Link href="/">
+            <Button variant="secondary" type="button">
+              Cancel
+            </Button>
           </Link>
         </div>
       </form>
-    </main>
+    </PageShell>
   );
 }
